@@ -13,9 +13,19 @@ def search_product(name: str) -> dict:
 
     response = requests.get(f"{ settings.API_BASE_URL }/name/{ name }")
 
-    print(response)
-
     return response.json()
+
+
+# def search_product_all() -> dict:
+#     """
+#         Busca todos los productos en la API de productos
+
+#         Respuesta: Lista de diccionario con la información resumida de los productos
+#     """
+
+#     response = requests.get(f"{ settings.API_BASE_URL }")
+
+#     return response.json()
 
 
 def create_product(
@@ -63,7 +73,7 @@ def create_product(
         payload["image"] = image
 
     response = requests.post(
-        f"{ settings.API_BASE_URL }/{ name }",
+        f"{ settings.API_BASE_URL }",
         json=payload
     )
 

@@ -1,66 +1,10 @@
-# from fastapi import APIRouter, Request
-# from src.agents.main import graph
-# import logging
-# from langchain_core.messages import HumanMessage
-# from twilio.rest import Client
-# from src.core.config import settings
-
-
-
-# _logger = logging.getLogger(__name__)
-
-# router = APIRouter(prefix="/agents", tags=["agents"])
-
-# twilio_client = Client(settings.TWILIO_ACCOUNT_SID, settings.TWILIO_AUTH_TOKEN)
-
-# @router.post("/webhook")
-# async def whatsapp_webhook(request: Request):
-#     try:
-#         form_data = await request.form()
-#         user_message = form_data.get("Body", "")
-
-#         # Creamos el estado inicial con el mensaje del usuario
-#         initial_state = {
-#             "messages": [HumanMessage(content=user_message)],
-#             "my_var": ""  # Añadimos cualquier variable adicional que necesitemos
-#         }
-
-#         # Ejecutamos el grafo con el mensaje del usuario
-#         result = await graph.ainvoke(initial_state)
-
-#         agent_response = result["messages"][-1].content
-
-#         print(agent_response)
-
-#         message = twilio_client.messages.create(
-#             from_=settings.TWILIO_FROM_NUMBER,
-#             to=settings.TWILIO_TO_NUMBER,
-#             body=agent_response
-#         )
-#         print(message)
-
-#         return {"status": "message received"}
-#     except Exception as e:
-#         return {"error": str(e)}
-    
-
-
-
-
-
-
-
-
-
-
-
-
 from fastapi import APIRouter, Request
 from src.agents.main import graph
 import logging
 from langchain_core.messages import HumanMessage, ToolMessage
 from twilio.rest import Client
 from src.core.config import settings
+from src.agents.state.schema import State
 
 from pymongo import MongoClient
 
