@@ -19,9 +19,9 @@ def generate_product_image(name: str) -> dict:
     tool_img = {"type": "image_generation", "quality": "low"}
     llm_with_tools_img = llm_img.bind_tools([tool_img])
 
-    system_message = SystemMessage(content=IMAGE_PROMPT(name))
+    # system_message = SystemMessage(content=IMAGE_PROMPT(name))
 
-    ai_message = llm_with_tools_img.invoke([system_message])
+    ai_message = llm_with_tools_img.invoke(IMAGE_PROMPT(name))
 
     image = next(item for item in ai_message.content if item["type"] == "image_generation_call")
     binary = base64.b64decode(image["result"])
