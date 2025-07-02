@@ -3,6 +3,7 @@ from src.core.config import settings
 import cloudinary
 import cloudinary.uploader
 from langchain_openai import ChatOpenAI
+from langchain_core.messages import SystemMessage
 from src.agents.llm.prompts import IMAGE_PROMPT
 
 
@@ -18,7 +19,9 @@ def generate_product_image(name: str) -> dict:
     tool_img = {"type": "image_generation", "quality": "low"}
     llm_with_tools_img = llm_img.bind_tools([tool_img])
 
-    ai_message = llm_with_tools_img.invoke(IMAGE_PROMPT(name))
+    system_message = SystemMessage(content=IMAGE_PROMPT(name))
+
+    ai_message = llm_with_tools_img.invoke([system_message])
 
     image = next(item for item in ai_message.content if item["type"] == "image_generation_call")
     binary = base64.b64decode(image["result"])
