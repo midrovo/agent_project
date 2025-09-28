@@ -15,7 +15,7 @@ El sistema permite:
 ### Backend
 - **Framework:** FastAPI
 - Gestiona el modelo de productos y la comunicación con el agente de IA.
-- **Base de datos:** MongoDB (para productos y estado de conversaciones).
+- **Base de datos:** MySQL y MongoDB (para productos y estado de conversaciones).
 
 ### Frontend
 - **Framework:** Flutter
