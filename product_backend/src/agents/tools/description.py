@@ -14,10 +14,10 @@ def describe_product(name: str) -> dict:
         dict: Diccionario con la descripción generada
     """
 
-    # system_message = SystemMessage(content=DESCRIBE_PROMPT())
-
     llm_local = ChatOpenAI(model="gpt-4o", temperature=0.7)
-    description = llm_local.invoke(DESCRIBE_PROMPT()).content
+    description = llm_local.invoke(DESCRIBE_PROMPT(name)).content
+
+    print(description)
 
     return {
         "name": name,

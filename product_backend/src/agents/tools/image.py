@@ -3,10 +3,7 @@ from src.core.config import settings
 import cloudinary
 import cloudinary.uploader
 from langchain_openai import ChatOpenAI
-from langchain_core.messages import SystemMessage
 from src.agents.llm.prompts import IMAGE_PROMPT
-
-
 
 def generate_product_image(name: str) -> dict:
     """
@@ -14,12 +11,9 @@ def generate_product_image(name: str) -> dict:
     sube la imagen a Cloudinary y devuelve la URL.
     """
 
-    # LLM para generar la imagen
     llm_img = ChatOpenAI(model="gpt-4.1-mini", output_version="responses/v1")
     tool_img = {"type": "image_generation", "quality": "low"}
     llm_with_tools_img = llm_img.bind_tools([tool_img])
-
-    # system_message = SystemMessage(content=IMAGE_PROMPT(name))
 
     ai_message = llm_with_tools_img.invoke(IMAGE_PROMPT(name))
 

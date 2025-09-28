@@ -48,7 +48,5 @@ async def whatsapp_webhook(request: Request):
     except Exception as e:
         import traceback
         tb = traceback.format_exc()
-        _logger.error(f"Error in WhatsApp webhook: {e}\nTraceback:\n{tb}")
+        _logger.error(f"Error en WhatsApp webhook: {e}\nTraceback:\n{tb}")
         return {"error": f"{str(e)}\nTraceback:\n{tb}"}
-        _logger.error(f"Error in WhatsApp webhook: {e}")
-        return {"error": str(e)}
