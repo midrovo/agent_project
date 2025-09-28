@@ -51,3 +51,5 @@ El sistema permite:
 - **Comunicación:** Twilio WhatsApp  
 - **Almacenamiento de imágenes:** Cloudinary
 
+![Diagrama de Arquitectura](diagrama-arquitectura-software.png)
+
